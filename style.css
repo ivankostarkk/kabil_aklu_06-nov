@@ -1,0 +1,276 @@
+/* ==========================================================================
+   LUXURY WHITE-PINK 3D HOLOGRAPHIC HEART (KABIL'S HEART -> AKLU BEAT)
+   ========================================================================== */
+
+:root {
+  --bg-gradient: radial-gradient(circle at 50% 40%, #ffffff 0%, #fff2f6 55%, #ffe6ef 100%);
+  --pink-neon: #ff2a75;
+  --pink-deep: #e60050;
+  --pink-soft: #ff85af;
+  --pink-glow: rgba(255, 42, 117, 0.45);
+  
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-cursive: 'Caveat', cursive;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-gradient);
+  font-family: var(--font-sans);
+  position: relative;
+  color: #3b1220;
+}
+
+/* 3D WebGL Canvas Layer */
+#webgl-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+/* Bursting "aklu" Layer */
+#aklu-burst-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+}
+
+/* Floating "aklu" word on each heartbeat */
+.emanating-aklu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: var(--font-cursive);
+  font-weight: 700;
+  color: var(--pink-neon);
+  text-shadow: 0 0 14px rgba(255, 42, 117, 0.6), 0 0 28px rgba(255, 117, 160, 0.4);
+  white-space: nowrap;
+  pointer-events: none;
+  animation: floatAklu 1.8s cubic-bezier(0.18, 0.89, 0.32, 1.1) forwards;
+}
+
+@keyframes floatAklu {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(var(--scale));
+    opacity: 0;
+  }
+}
+
+/* Music Floating Pill Controller */
+.music-pill {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 105, 155, 0.35);
+  backdrop-filter: blur(14px);
+  padding: 8px 18px;
+  border-radius: 40px;
+  box-shadow: 0 10px 30px rgba(230, 0, 80, 0.12), 0 0 15px rgba(255, 133, 175, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.music-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px rgba(230, 0, 80, 0.2);
+  border-color: var(--pink-neon);
+}
+
+.music-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff2a75, #ff85af);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beat-icon {
+  font-size: 0.95rem;
+  color: #fff;
+  animation: miniHeartBeat 1.3s infinite;
+}
+
+.music-meta {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.music-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #3b1220;
+}
+
+.music-sub {
+  font-size: 0.7rem;
+  color: #a84265;
+}
+
+.music-btn {
+  background: rgba(255, 42, 117, 0.1);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--pink-neon);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.music-btn:hover {
+  background: var(--pink-neon);
+  color: #fff;
+}
+
+/* Header Overlay */
+.header-overlay {
+  position: fixed;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 30;
+  pointer-events: none;
+  animation: fadeInDown 1.2s ease-out;
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 16px;
+  border-radius: 999px;
+  background: rgba(255, 42, 117, 0.1);
+  border: 1px solid rgba(255, 105, 155, 0.35);
+  color: var(--pink-deep);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  backdrop-filter: blur(8px);
+}
+
+.header-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #4a1525;
+  letter-spacing: 0.5px;
+  text-shadow: 0 4px 15px rgba(255, 100, 140, 0.2);
+}
+
+/* Footer Overlay */
+.footer-overlay {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.heartbeat-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 105, 155, 0.35);
+  padding: 8px 22px;
+  border-radius: 30px;
+  box-shadow: 0 8px 25px rgba(230, 0, 80, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pink-neon);
+  box-shadow: 0 0 10px var(--pink-neon);
+  animation: pulseDot 1.3s infinite;
+}
+
+.indicator-text {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: #5c1d32;
+}
+
+.aklu-highlight {
+  font-family: var(--font-cursive);
+  font-size: 1.4rem;
+  color: var(--pink-neon);
+  letter-spacing: 1px;
+}
+
+.drag-hint {
+  font-size: 0.78rem;
+  color: #a85d77;
+  letter-spacing: 0.5px;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  20% { transform: scale(1.6); opacity: 1; }
+  40% { transform: scale(1.1); opacity: 0.9; }
+}
+
+@keyframes miniHeartBeat {
+  0%, 100% { transform: scale(1); }
+  20% { transform: scale(1.3); }
+  40% { transform: scale(1.1); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translate(-50%, -15px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate(-50%, 15px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@media (max-width: 600px) {
+  .header-title { font-size: 1.7rem; }
+  .music-pill { top: 16px; right: 16px; padding: 6px 14px; }
+  .music-title { font-size: 0.75rem; }
+  .footer-overlay { bottom: 20px; }
+}

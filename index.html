@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Kabi's Heartbeat &bull; Aklu</title>
+
+  <!-- Google Fonts: Editorial & Handwriting -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Three.js + OrbitControls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Fullscreen 3D WebGL Canvas -->
+  <div id="webgl-container"></div>
+
+  <!-- Layer for emanating "aklu" bursts upon every heartbeat -->
+  <div id="aklu-burst-layer"></div>
+
+  <!-- Music Pill Player -->
+  <div class="music-pill" id="musicPill" title="Tap to Play Music">
+    <div class="music-icon-box">
+      <i class="fa-solid fa-heart beat-icon" id="musicIcon"></i>
+    </div>
+    <div class="music-meta">
+      <span class="music-title">Our Sacred Melody</span>
+      <span class="music-sub" id="musicStatus">Tap to Play</span>
+    </div>
+    <button class="music-btn" id="musicBtn" aria-label="Play/Pause Audio">
+      <i class="fa-solid fa-play" id="playIcon"></i>
+    </button>
+  </div>
+
+  <audio id="bg-audio" loop preload="auto">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-serene-view-443.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Top Title Overlay -->
+  <header class="header-overlay">
+    <div class="tag-pill">
+      <i class="fa-solid fa-sparkles"></i> Pure Love
+    </div>
+    <h1 class="header-title">Kabi's Heart</h1>
+  </header>
+
+  <!-- Bottom Message Bar -->
+  <footer class="footer-overlay">
+    <div class="heartbeat-indicator">
+      <span class="pulse-dot"></span>
+      <span class="indicator-text">Heartbeat: <strong class="aklu-highlight">aklu... aklu...</strong></span>
+    </div>
+    <p class="drag-hint">Touch &amp; drag to rotate the 3D heart &bull; Tap to beat &#10024;</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
